@@ -1,0 +1,50 @@
+
+
+.clubs > .clubs-header {
+	
+	list-style-type: none;
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+	background: #eee;
+	border: 1px solid black;
+	align-items: center;
+}
+
+.clubs > .clubs-header > li {
+	text-align: center;
+	border-left: 1px dashed black;
+	font-weight: bold;
+}
+
+.clubs > .clubs-header > .clubs-header-name {
+	border-left: none;
+} 
+
+/*.clubs > .clubs-header > .clubs-header-club {
+	grid-column: 2 / 4;
+} 
+
+.clubs > .clubs-header > .clubs-header-league {
+	grid-column: 5 / 7;
+} */
+
+
+.clubs > .clubs-list {
+	list-style-type: none;
+}
+
+.clubs > .clubs-list > li {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	align-items: center;
+	text-align: center;
+}
+
+.clubs > .clubs-list > li > div {
+	color: darkcyan;
+}
+
+.clubs > .clubs-list > li > div > a {
+	color: darkcyan;
+	text-decoration: none;
+}

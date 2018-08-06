@@ -1,0 +1,31 @@
+.leagues-all {
+	text-align: center;
+}
+
+.leagues-all > ul {
+	list-style-type: none;
+
+}
+
+.leagues-all > ul > li {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 1em;
+	border: 1px solid #eee;
+	align-items: center;
+	min-height: 128px;
+	padding: 1em;
+}
+
+.leagues-all > ul > li > .league-name {
+	text-align: left;
+}
+
+.leagues-all > ul > li > .league-country-image {
+	text-align: right;
+}
+
+.leagues-all > ul > li a {
+	text-decoration: none;
+}
+

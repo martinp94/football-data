@@ -1,0 +1,32 @@
+.matches-today {
+	text-align: center;
+}
+
+.matches-today > .matches-competition {
+	margin-bottom: 1em;
+}
+
+.matches-today > .matches-competition > .competition-fixture {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.matches-today > .matches-competition > .competition-fixture a {
+	text-decoration: none;
+	color: darkcyan;
+}
+
+.matches-today > .matches-competition > .competition-fixture.live > .fixture-time {
+	color: darkred;
+	font-weight: bold;
+}
+
+.matches-today > .matches-competition > .competition-fixture.live > .fixture-result {
+	color: darkred;
+	font-weight: bold;
+}
+
+.matches-today > .matches-competition > .matches-competition-header {
+	background: #ccc;
+
+}

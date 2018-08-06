@@ -1,0 +1,12 @@
+.player-info {
+	height: 30rem;
+	/*background: #eee;*/
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: center;
+	text-align: center;
+}
+
+.player-info > .player-nationality {
+	grid-column: 1 / 4;
+}

@@ -1,0 +1,37 @@
+.league-page {
+	text-align: center;
+}
+
+
+.league-page > .league-page-navigation {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: center;
+	grid-gap: .2em;
+	margin-bottom: 1em;
+}
+
+.league-page > .league-page-navigation > a > div {
+	background: #eee;
+	padding: 1em;
+	border: 1px dashed #fff;
+	cursor: pointer;
+}
+
+.league-page > .league-page-display {
+	background: #eee;
+	min-height: 700px;
+	padding: 1em;
+}
+
+.league-history > ul {
+	font-size: 1.5rem;
+	list-style-type: none;
+}
+
+.league-history > ul > li > a {
+	color: orange;
+	text-decoration: none;
+	cursor: pointer;
+}
+

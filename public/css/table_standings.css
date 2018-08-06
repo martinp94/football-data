@@ -1,0 +1,47 @@
+.table-standings { 
+
+}
+
+.table-standings > .table-standings-header {
+
+}
+
+.table-standings > .table-standings-body { 
+
+}
+
+.table-standings > .table-standings-body .ch-league-group { 
+	background: darkblue;
+	color: white;
+}
+
+.table-standings > .table-standings-body .relegation { 
+	background: darkred;
+	color: white;
+}
+
+.table-standings > .table-standings-body .table-standings-form { 
+	padding: 0;
+}
+
+.table-standings > .table-standings-body .table-standings-form > span { 
+	font-size: 1.3rem;
+	border-radius: .2em;
+	color: white;
+	padding-left: .2em;
+	padding-right: .2em;
+}
+
+.table-standings > .table-standings-body .table-standings-form > .table-standings-win { 
+	background: green;
+}
+
+.table-standings > .table-standings-body .table-standings-form > .table-standings-draw { 
+	background: orange;
+}
+
+.table-standings > .table-standings-body .table-standings-form > .table-standings-defeat { 
+	background: darkred;
+	padding-left: .4em;
+	padding-right: .4em;
+}

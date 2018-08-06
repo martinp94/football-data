@@ -1,0 +1,98 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+/* Need off-canvas-wrapper to have overflow visible for scroll events to work with flex and 100vh viewport; however,
+   a side-effect is that scroll bars will appear when the off-canvas is opened */
+/*.off-canvas-wrapper {
+    overflow: visible;
+}*/
+
+.off-canvas-content {
+
+    display: flex;
+    flex-direction: column;
+    /*background: url('../images/background.png');*/
+    min-height: 100vh;
+
+}
+
+header {
+
+    background: #e5e5e5;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    align-items: end;
+    
+}
+
+header a {
+ 
+  font-weight: bold;
+  font-size: 1rem;
+  color: #931111;
+}
+
+
+header a:hover {
+  text-decoration: none;
+  color: #cc4949;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+  padding: 16px;
+  background: #323031;
+  color: #fff;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+ 
+}
+
+footer > .copyright {
+  text-align: center;
+  grid-column: 2 / 4;
+}
+
+footer > ul {  
+  list-style-type: square;
+}
+
+footer a:hover {  
+  text-decoration: none;
+  color: white;
+}
+
+nav {
+  margin: 0;
+}
+
+.navbar.navbar-expand-lg.navbar-light {
+  background: #d3d1d1;
+}
+
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-gap: 1em;
+  margin: 0px 1% 2% 1%;
+}
+
+.main > div {
+  background: #eee;
+  padding: 1em;
+  opacity: 0.7;
+ 
+}
+
+.main > .main-content {
+  margin-top: 1em;
+  background: #fff;
+  opacity: 1;
+}

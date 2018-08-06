@@ -1,0 +1,34 @@
+
+.league-matches > .league-round {
+	margin: 1em;
+	border: 1px solid black;
+	border-bottom-right-radius: 1em;
+	border-top-left-radius: 1em;
+	overflow: hidden;
+
+}
+
+.league-matches > .league-round > .league-fixture {
+	display: grid;
+	grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
+	grid-gap: 1em;
+
+	
+}
+
+.league-matches > .league-round > .league-fixture a {
+	text-decoration: none;
+	color: darkcyan;
+}
+
+.league-matches > .league-round > .league-fixture > .league-fixture-result {
+	border-left: 1px dashed black;	
+	border-right: 1px dashed black;
+	
+}
+
+.league-matches > .league-round > .league-round-header {
+	background: #3399cc;
+	border-bottom: 1px solid black;
+}
+

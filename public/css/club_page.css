@@ -1,0 +1,93 @@
+/* CLUB PAGE NAVIGATION */
+
+.club-page > .navbar > .navbar-collapse > .navbar-nav > li {
+	background: #ccc;
+	border: 1px solid #fff;
+	border-radius: .3em;	
+}
+
+
+/* CLUB INFO PAGE */
+
+.club-page > .club-info {
+	margin: 2em;
+	display: grid;
+	grid-template-columns: 2fr 2fr 2fr;
+	grid-gap: 2em;
+	align-items: center;
+}
+
+.club-page > .club-info > div > a {
+	text-decoration: none;
+	font-size: 1.5rem;
+	color: darkcyan;
+}
+
+
+/* CLUB MATCHES PAGE */
+
+.club-matches > .club-matches-competition {
+	margin: 1em;
+	border: 1px solid black;
+	border-bottom-right-radius: 1em;
+	border-top-left-radius: 1em;
+	overflow: hidden;
+	text-align: center;
+	font-size: .8rem;
+
+}
+
+.club-matches > .club-matches-competition > .competition-fixture {
+	display: grid;
+	grid-template-columns: 2fr 1fr 2fr 2fr 1fr 2fr 2fr 2fr;
+	align-items: center;
+}
+
+.club-matches > .club-matches-competition > .competition-fixture a {
+	text-decoration: none;
+	color: darkcyan;
+}
+
+.club-matches > .club-matches-competition > .competition-fixture > div {
+	border-left: 1px dashed black;	
+	min-height: 5em;
+	padding-top: 1em;
+		
+}
+
+.club-matches > .club-matches-competition > .competition-fixture > .fixture-team1 {
+	border-left: none;	
+	
+	
+}
+
+.club-matches > .club-matches-competition > .club-matches-competition-header {
+	background: #3399cc;
+}
+
+/* CLUB SQUAD PAGE */
+
+.club-squad {
+	text-align: center;
+}
+
+.club-squad a {
+	text-decoration: none;
+	color: darkcyan;
+}
+
+.club-squad > .club-squad-player-header , .club-squad > div > .club-squad-player {
+	 display: grid;
+	 grid-template-columns: 2fr 1fr 2fr 1fr 1fr 1fr;
+	 align-items: center;
+	 grid-gap: 1em;
+}
+
+.club-squad > .club-squad-player-header , .club-squad > div {
+	 border: 1px solid black;
+	 margin: 1em auto;
+}
+
+.club-squad > .club-squad-player-header , .club-squad > div > .header {
+	 background: #ccc;
+}

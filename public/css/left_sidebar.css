@@ -1,0 +1,30 @@
+aside.aside-left {
+	text-align: center;
+	height: inherit;
+	
+
+}
+
+aside.aside-left .country-list {
+	text-align: justify;
+	list-style-type: none;
+	max-height: 72vh;
+	overflow: scroll;
+}
+
+aside.aside-left .country-list > li {
+	margin: 12px auto;
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 3em;
+	padding: 12px;
+	margin-right: 1em;
+}
+
+aside.aside-left .country-list > li > a {
+	cursor: pointer;
+	text-decoration: none;
+	font-weight: bold;
+	color: darkcyan;
+}
+
