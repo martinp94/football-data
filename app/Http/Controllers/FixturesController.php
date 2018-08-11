@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Team;
+use Illuminate\Support\Facades\DB;
 
-class TeamsController extends Controller
+use App\Fixture;
+use \Carbon\Carbon;
+
+class FixturesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +17,21 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        $teams = Team::orderBy('name', 'asc')->paginate(30);
-      
-        return view('clubs.clubs-all', compact('teams'));
+        $today = Carbon::now(2);
+
+        $scheduledAll = DB::table('fixtures')
+            ->join('seasons', 'fixtures.season_id', '=', 'seasons.id')
+            ->join('competitions', 'seasons.competition', '=', 'competitions.id')
+            ->where('fixtures.status', '=', 'SCHEDULED')
+            ->orderBy('fixtures.date')
+            ->select('fixtures.homeTeam', 'fixtures.awayTeam', 'fixtures.date', 'fixtures.status', 'seasons.startDate', 'seasons.endDate', 'competitions.name as competition_name')
+            ->get();
+
+        $todayMatches = $scheduledAll->filter(function($fixture) use($today) {
+            return $today->isSameDay(Carbon::parse($fixture->date));
+        });
+
+        return view('matches.matches-recent')->with('matches', $todayMatches);
     }
 
     /**
@@ -43,38 +58,12 @@ class TeamsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        $team = Team::where('tla', $request['tla'])->first();
-        return view('clubs.club-page')->with('team', $team);
-    }
-
-
-    public function info(Request $request)
-    {
-        $team = Team::where('tla', $request['tla'])->first();
-        return view('clubs.club-info')->with('team', $team);
-    }
-
-    public function matches(Request $request)
-    {
-        $team = Team::where('tla', $request['tla'])->first();
-        return view('clubs.club-matches')->with('team', $team);
-    }
-
-    public function squad(Request $request)
-    {
-        $team = Team::where('tla', $request['tla'])->first();
-
-        return view('clubs.club-squad')->with([
-            'team' => $team,
-            'squad' => $team->persons
-        ]);
-
-        
+        //
     }
 
     /**

@@ -22,7 +22,7 @@
 				<div class="clubs-list-club-name">
 					<a href="{{ route('club', $team->tla) }}">
 						
-						{{ $team['name'] }} 
+						{{ $team->name }} 
 
 					</a>
 				</div>
@@ -36,21 +36,24 @@
 				</div>
 
 				<div class="clubs-list-club-country">
-					<img width="32" src="{{ asset('images/countries')  . '/' . $team->country->image}} ">
+					<img width="32" src="{{ asset('images/countries') . '/' . $team->country->image}} ">
 					
 				</div>
 
 				<div class="clubs-list-league">
-					nema jos to
+					{{ $team->currentCompetition()['name'] }}
 				</div>
 
 				<div class="clubs-list-league-pos">
-					nema jos ni ovo
+					-
 				</div>
 
 			</li>
 		</ul> 
+		
 	@endforeach
+
+	{{ $teams->links() }}
 
 </div>
 

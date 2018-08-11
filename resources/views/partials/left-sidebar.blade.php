@@ -14,7 +14,7 @@
 						{{ $country['name'] }} 
 					</a> 
 
-					<img width="32" src="{{ asset('images/countries/' . $country['image']) }}" /> 
+					<img width="32" src="{{ asset('images/countries/' . $country['image']) }}" alt="Not Found" onerror=this.src="{{ asset('images/countries/' . 'unknown.png') }}">
 				</li>
 			@endforeach
 

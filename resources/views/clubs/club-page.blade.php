@@ -13,15 +13,15 @@
 			<ul class="navbar-nav">
 			  
 			  <li class="nav-item">
-			    <a class="nav-link" href="{{ route('club-info', [$team->tla]) }}">Pregled</a>
+			    <a class="nav-link" href="{{ route('club.info', [$team->tla]) }}">Pregled</a>
 			  </li>
 
 			  <li class="nav-item">
-			    <a class="nav-link" href="{{ route('club-results', [$team->name]) }}">Rezultati</a>
+			    <a class="nav-link" href="{{ route('club.matches', [$team->tla]) }}">Utakmice</a>
 			  </li>
 
 			  <li class="nav-item">
-			    <a class="nav-link" href="{{ route('club-squad', [$team->name]) }}">Sastav</a>
+			    <a class="nav-link" href="{{ route('club.squad', [$team->tla]) }}">Sastav</a>
 			  </li>
 
 			</ul>

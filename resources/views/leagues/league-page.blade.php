@@ -16,7 +16,7 @@
 			</div>
 		</a>
 
-		<a href="{{ route('league.matches', ['shortName' => $competition->shortName]) }}">
+		<a href="{{ route('league.matches', ['shortName' => $competition->shortName, 'season' => $season->startDate]) }}">
 			<div class="league-page-navigation-matches" rel="matches">
 
 				
@@ -38,6 +38,8 @@
 		</a>
 		
 	</div>
+
+	<h1>sezona {{ $season->id }}</h1>
 
 	<div class="league-page-display">
 		

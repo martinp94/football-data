@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Competition;
 use App\Area;
+use App\Season;
 
 class CompetitionsController extends Controller
 {
@@ -50,8 +51,17 @@ class CompetitionsController extends Controller
     public function show(Request $request)
     {
         
+        
         $competition = Competition::where('shortName', $request['shortName'])->first();
-        return view('leagues.league-page')->with('competition', $competition);
+        $season = $request['season'] == null ? 
+            Season::where('competition', '=', $competition->id)->orderBy('startDate', 'desc')->first() :
+            Season::where('competition', '=', $competition->id)->where('startDate', '=', $request['season'])->first();
+            
+
+        return view('leagues.league-page')->with([
+            'competition' => $competition,
+            'season' => $season
+        ]);
     }
 
     public function showByCountry(Request $request)
@@ -69,7 +79,14 @@ class CompetitionsController extends Controller
     public function matches(Request $request)
     {
         $competition = Competition::where('shortName', $request['shortName'])->first();
-        return view('leagues.league-matches')->with('competition', $competition);;
+        $season = $request['season'] == null ? 
+            Season::where('competition', '=', $competition->id)->orderBy('startDate', 'desc')->first() :
+            Season::where('competition', '=', $competition->id)->where('startDate', '=', $request['season'])->first();
+      
+        return view('leagues.league-matches')->with([
+            'competition' => $competition,
+            'season' => $season
+        ]);
     }
 
     public function history(Request $request)

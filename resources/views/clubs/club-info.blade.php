@@ -23,9 +23,9 @@
 	<div class="club-league">
 
 		<a href="index.php?league=la_liga1">
-			La liga
+			{{ $team->currentCompetition()['name'] }}
 		</a>
-		<img width="32" src="{{ asset('images/league_logos/la-liga1.jpg') }}">
+		<img width="64" src="{{ asset('images/league_logos/') . '/' . $team->currentCompetition()['name'] . '.jpg' }}" alt="Not Found" onerror=this.src="{{ asset('images/league_logos/unknown.png') }}">
 	</div>
 
 	
@@ -57,7 +57,9 @@
 </div>
 
 <iframe width="600" height="450" frameborder="0" style="border:0"
-src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ $team->place_id }}&key=AIzaSyD1zZzMiGCO1tIPeuMuMshBeLGqtNczNcY" allowfullscreen></iframe>
+src="https://www.google.com/maps/embed/v1/place?q={{ $team->venue }}&key=AIzaSyD1zZzMiGCO1tIPeuMuMshBeLGqtNczNcY" allowfullscreen></iframe>
+
+
 
 
 

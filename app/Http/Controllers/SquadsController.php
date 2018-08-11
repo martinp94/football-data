@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Team;
 
-class TeamsController extends Controller
+class SquadsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,7 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        $teams = Team::orderBy('name', 'asc')->paginate(30);
-      
-        return view('clubs.clubs-all', compact('teams'));
+        //
     }
 
     /**
@@ -43,38 +40,12 @@ class TeamsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        $team = Team::where('tla', $request['tla'])->first();
-        return view('clubs.club-page')->with('team', $team);
-    }
-
-
-    public function info(Request $request)
-    {
-        $team = Team::where('tla', $request['tla'])->first();
-        return view('clubs.club-info')->with('team', $team);
-    }
-
-    public function matches(Request $request)
-    {
-        $team = Team::where('tla', $request['tla'])->first();
-        return view('clubs.club-matches')->with('team', $team);
-    }
-
-    public function squad(Request $request)
-    {
-        $team = Team::where('tla', $request['tla'])->first();
-
-        return view('clubs.club-squad')->with([
-            'team' => $team,
-            'squad' => $team->persons
-        ]);
-
-        
+        //
     }
 
     /**

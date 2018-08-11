@@ -34,9 +34,7 @@ Route::prefix('administration')->group(function() {
 
 // UTAKMICE
 
-Route::get('/utakmice', function() {
-	return view('matches.matches-last-7-days');
-});
+Route::get('/utakmice', 'FixturesController@index')->name('matches.recent');
 
 Route::get('/uzivo', function() {
 	return view('matches.matches-live');
@@ -56,9 +54,11 @@ Route::get('/liga/{shortName}', 'CompetitionsController@show')->name('league');
 
 Route::get('/liga/{shortName}/tabela', 'CompetitionsController@table')->name('league.table');
 
-Route::get('/liga/{shortName}/utakmice', 'CompetitionsController@matches')->name('league.matches');
+Route::get('/liga/{shortName}/{season}/utakmice', 'CompetitionsController@matches')->name('league.matches');
 
 Route::get('/liga/{shortName}/istorija', 'CompetitionsController@history')->name('league.history');
+
+Route::get('/liga/{shortName}/{season}', 'CompetitionsController@show')->name('league.season');
 
 
 
@@ -72,19 +72,13 @@ Route::get('/klubovi', 'TeamsController@index')->name('teams.all');
 Route::get('/klub/{tla}', 'TeamsController@show')->name('club');
 
 
-Route::get('/klub/{tla}/info/', 'TeamsController@info')->name('club-info');
+Route::get('/klub/{tla}/info/', 'TeamsController@info')->name('club.info');
 
 
-Route::get('/klub/{naziv}/rezultati/', function($club) {
-
-	return view('clubs.club-results')->with('club_name', $club);
-})->name('club-results');
+Route::get('/klub/{tla}/rezultati/', 'TeamsController@matches')->name('club.matches');
 
 
-Route::get('/klub/{naziv}/postavka/', function($club) {
-
-	return view('clubs.club-squad')->with('club_name', $club);
-})->name('club-squad');
+Route::get('/klub/{tla}/postavka/', 'TeamsController@squad')->name('club.squad');
 
 
 
@@ -94,11 +88,6 @@ Route::get('/klub/{naziv}/postavka/', function($club) {
 // IGRACI
 
 
-Route::get('/igrac', 'HomeController@index')->name('home');
-
-Route::get('/igrac/{ime}', function($name) {
-
-	return view('players.player-info')->with('name', $name);
-});
+Route::get('/igrac/{uriname}', 'PersonsController@show')->name('player');
 
 

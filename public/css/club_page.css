@@ -39,7 +39,7 @@
 
 .club-matches > .club-matches-competition > .competition-fixture {
 	display: grid;
-	grid-template-columns: 2fr 1fr 2fr 2fr 1fr 2fr 2fr 2fr;
+	grid-template-columns: 3fr 1fr 3fr 2fr 1fr 2fr 2fr 2fr;
 	align-items: center;
 }
 
@@ -49,7 +49,7 @@
 }
 
 .club-matches > .club-matches-competition > .competition-fixture > div {
-	border-left: 1px dashed black;	
+	border-left: 1px solid black;	
 	min-height: 5em;
 	padding-top: 1em;
 		
@@ -78,7 +78,7 @@
 
 .club-squad > .club-squad-player-header , .club-squad > div > .club-squad-player {
 	 display: grid;
-	 grid-template-columns: 2fr 1fr 2fr 1fr 1fr 1fr;
+	 grid-template-columns: 2fr 2fr 2fr 2fr 1fr 1fr 1fr 1fr 1fr;
 	 align-items: center;
 	 grid-gap: 1em;
 }
@@ -91,3 +91,8 @@
 .club-squad > .club-squad-player-header , .club-squad > div > .header {
 	 background: #ccc;
 }
+
+/*.club-squad .club-squad-player > .club-squad-player-image > img {
+	background-image: url('https://www.timeshighereducation.com/sites/default/files/byline_photos/default-avatar.png');
+	width:32px;
+}*/
