@@ -19,9 +19,23 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 
-Route::prefix('administration')->group(function() {
+Route::prefix('administracija')->group(function() {
 
 	Route::get('/', 'AdminController@index')->name('administration');
+
+	Route::get('/utakmice', 'AdminController@fixtures')->name('administration.matches');
+	Route::get('/utakmice/azuriranje', 'FixturesController@fixturesToBeUpdated')->name('administration.matches-to-be-updated');
+
+
+
+	Route::get('/takmicenja', 'AdminController@competitions')->name('administration.competitions');
+	Route::get('/timovi', 'AdminController@teams')->name('administration.teams');
+
+
+	Route::get('/oblasti', 'AdminController@areas')->name('administration.areas');
+	
+
+
 	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('administration.login');
 	Route::post('/login', 'Auth\AdminLoginController@login')->name('administration.login.submit');
 
@@ -36,9 +50,9 @@ Route::prefix('administration')->group(function() {
 
 Route::get('/utakmice', 'FixturesController@index')->name('matches.recent');
 
-Route::get('/uzivo', function() {
-	return view('matches.matches-live');
-});
+Route::get('/uzivo', 'FixturesController@live')->name('matches.live');
+
+Route::patch('matches/{id}', 'FixturesController@update')->name('match.update');
 
 
 
@@ -89,5 +103,16 @@ Route::get('/klub/{tla}/postavka/', 'TeamsController@squad')->name('club.squad')
 
 
 Route::get('/igrac/{uriname}', 'PersonsController@show')->name('player');
+
+
+// OBLASTI
+
+Route::get('/oblasti', 'AreasController@index')->name('areas.all');
+Route::get('/oblasti/{code}', 'AreasController@edit')->name('areas.edit');
+Route::get('/oblasti/dodavanje', 'AreasController@create')->name('areas.create');
+
+
+Route::post('/oblasti', 'AreasController@store')->name('area.store');
+Route::patch('/oblasti/{id}', 'AreasController@update')->name('area.update');
 
 

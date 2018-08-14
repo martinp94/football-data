@@ -1,0 +1,42 @@
+#administration {
+	margin: 1em;
+	
+}
+
+#administration a {
+	text-decoration: none;
+	font-weight: bold;
+	color: darkcyan;
+	
+}
+
+#administration a:hover {
+	color: #4292f4;
+}
+
+#administration a:active {
+	color: #4180f4;
+}
+
+.administration-header {
+
+	background: black;
+	color: white;
+	padding: 1em;
+	border-radius: 0.3em;
+}
+
+.administration-header > .options {
+
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 2em;
+}
+
+#administration .administration-main {
+	
+	display: grid;
+	grid-template-columns: 15% 85%;
+	grid-gap: 1em;
+	padding: 1em;
+}

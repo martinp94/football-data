@@ -160,6 +160,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * FootballData Service Provider
+         */
+        FootballData\FootballServiceProvider::class,
+
     ],
 
     /*
@@ -208,6 +213,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Football' => FootballData\Facades\Football::class,
 
     ],
 

@@ -35,6 +35,10 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('teams.all') }}"> Klubovi <span class="sr-only">(current)</span></a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('administration') }}"> Administracija </a>
+      </li>
       
     </ul>
 

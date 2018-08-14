@@ -14,7 +14,7 @@
 
 .matches-recent > .matches-competition > .competition-fixture {
 	display: grid;
-	grid-template-columns: 2fr 1fr 2fr 1fr 1fr;
+	grid-template-columns: 1fr 2fr 1fr 2fr 1fr 1fr;
 }
 
 .matches-recent > .matches-competition > .competition-fixture a {

@@ -2,138 +2,98 @@
 
 @section('content')
 
-<?php
 
-$leagues = [
-	'ger-bundesliga1' => ['Bundesliga', 'Germany'],
-	'en-premier-league' => ['Premier League', 'England'],
-	'la-liga1' => ['La Liga', 'Spain'],
-	'srb-super-liga' => ['Super Liga', 'Serbia'],
-	'mne-telekom-league' => ['Crnogorska Telekom Liga', 'Montenegro'],
-	'ligue-1' => ['Ligue 1', 'France'],
-	'prva-mkd' => ['Makedonska 1. Liga', 'Fyrom'],
-	'hnl-1' => ['1. HNL', 'Croatia'],
-	'serie-A' => ['Serie A' , 'Italy']
-];
+<div class="matches-recent">
 
-$champions_league = ['champions_league', 'name' => 'Liga Šampiona'];
+    <div class="matches-header">
+        @php
 
-$europa_league = ['key' => 'europa_league', 'name' => 'Liga Evrope'];
+            /*$days = [];
 
-$friendly_matches = ['key' => 'friendly_matches', 'name' => 'Prijateljske utakmice'];
+            $today = \Carbon\Carbon::today();*/
+                
+            /*$days[] = $today;
 
-$clubs = [
+            $temp = [$today];
 
-    'real_madrid' => [
-        'club_name' => 'Real Madrid',
-        'league' => ["la-liga1", $leagues["la-liga1"]],
-        'league-pos' => 1
-    ],
-    'barcelona' => [
-        'club_name' => 'FC Barcelona',
-        'league' => ["la-liga1", $leagues["la-liga1"]],
-        'league-pos' => 2
-    ],
-    'psg' => [
-        'club_name' => 'PSG',
-        'league' => ["ligue-1", $leagues["ligue-1"]],
-        'league-pos' => 1
-    ],
-    'man_city' => [
-        'club_name' => 'Manchester City',
-        'league' => ["en-premier-league", $leagues["en-premier-league"]],
-        'league-pos' => 1
+            for($i = 0; $i < 7; $i ++)
+            {
+                echo $temp[$i]->format('d.m') . '<br>';
+                $temp[] = $temp[$i]->addDay();
+            }*/
 
-    ],
-    'juventus' => [
-        'club_name' => 'Juventus',
-        'league' => ["serie-A", $leagues["serie-A"]],
-        'league-pos' => 1
-    ],
-    'bayern_munich' => [
-        'club_name' => 'Bayern Munich',
-        'league' => ["ger-bundesliga1", $leagues["ger-bundesliga1"]],
-        'league-pos' => 1
-    ],
-    'crvena_stijena' => [
-        'club_name' => 'Crvena Stijena',
-        'league' => ["mne-telekom-league", $leagues["mne-telekom-league"]],
-        'league-pos' => 5
-    ],
-    'bokelj' => [
-        'club_name' => 'FK Bokelj',
-        'league' => ["mne-telekom-league", $leagues["mne-telekom-league"]],
-        'league-pos' => 9
-    ],
-    'sindjelic_beograd' => [
-        'club_name' => 'Sindjelic Beograd',
-        'league' => ["srb-super-liga", $leagues["srb-super-liga"]],
-        'league-pos' => 7
-    ],
-    'turnovo' => [
-        'club_name' => 'Turnovo',
-        'league' => ["prva-mkd", $leagues["prva-mkd"]],
-        'league-pos' => 6
-    ],
-    'novigrad' => [
-        'club_name' => 'Novigrad',
-        'league' => ["hnl-1", $leagues["hnl-1"]],
-        'league-pos' => 10
-    ]
-];
+        @endphp
+    </div>
+
+    @php
+        
+        $matchesByLeagues = $matches->mapToGroups(function ($match, $key) {
+            return [$match->competition_name => [
+                'id' => $match->id,
+                'homeTeam' => $match->homeTeam,
+                'awayTeam' => $match->awayTeam,
+                'matchDate' => $match->date,
+                'status' => $match->status
+                
+            ]];
+        });
+
+    @endphp
     
-?>
+    @foreach($matchesByLeagues as $competitionName => $matches)
 
-<div class="matches-today">
+        
+        <div class="matches-competition">
+            <div class="matches-competition-header">
+                {{ $competitionName }}
+            </div>
 
-	<div class="matches-competition">
+            @foreach($matches as $match)
 
-		<div class="matches-competition-header">
-			{{ $champions_league["name"] }} 
-		</div>
 
-		<div class="competition-fixture live">
-			<div class="fixture-team1">
-				{{ $clubs["real_madrid"]["club_name"] }} 
-				<img width="16" src="images/club_logos/real_madrid.jpg">
-			</div>
+                <div id="{{ $match['id'] }}" class="competition-fixture">
 
-			<div class="fixture-result"> - : - </div>
-			
-			<div class="fixture-team1">
-				{{ $clubs["bayern_munich"]["club_name"] }}  
-				<img width="16" src="images/club_logos/bayern_munich.jpg">
-			</div>
+                    <div class="minute">
+                        {{ \Carbon\Carbon::parse($match['matchDate'])->addHours(2)->format('H:i') }}
+                    </div>
 
-			<div class="fixture-time">20:45</div>
-			<div class="fixture-description">Grupna faza</div>
-		</div>
+                    <div class="fixture-homeTeam">
 
-	</div>
+                        <a href="#">
 
-	<div class="matches-competition">
-		<div class="matches-competition-header">
-			{{ $friendly_matches["name"] }}
-		</div>
+                            {{ App\Team::find($match['homeTeam'])->name }}
 
-		<div class="competition-fixture live">
-			<div class="fixture-team1">
-				{{ $clubs["bokelj"]["club_name"] }} 
-				<img width="16" src="images/club_logos/bokelj.jpg">
-			</div>
+                        </a>
+                        
+                        <img width="20" src="{{ asset('images/club_logos') }}/{{ App\Team::find($match['homeTeam'])->image }}">
 
-			<div class="fixture-result"> - : - </div>
-			
-			<div class="fixture-team1">
-				{{ $clubs["crvena_stijena"]["club_name"] }}  
-				<img width="16" src="images/club_logos/crvena_stijena.jpg">
-			</div>
+                    </div>
 
-			<div class="fixture-time"> 11:00 </div>
-			<div class="fixture-description">Prijateljska utakmica</div>
-		</div>
-		
-	</div>
+                    <div class="fixture-result"> - : - </div>
+                    
+                    <div class="fixture-awayTeam">
+
+                        <a href="index.php?club=bayern_munich">
+                            
+                            {{ App\Team::find($match['awayTeam'])->name }}
+
+                        </a>
+
+                        <img width="20" src="{{ asset('images/club_logos') }}/{{ App\Team::find($match['awayTeam'])->image }}">
+
+                    </div>
+
+                    <div class="fixture-time"> {{ \Carbon\Carbon::parse($match['matchDate'])->addHours(2)->format('d.m.Y') }} </div>
+                    <div class="fixture-description"> {{ $match['status'] }}  </div>
+                </div>
+
+            @endforeach
+
+        </div>
+
+    @endforeach
+
+<script src="{{ asset('js/fixtures.js') }}"></script>
 
 </div>
 

@@ -10,6 +10,8 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
     {{-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1zZzMiGCO1tIPeuMuMshBeLGqtNczNcY&libraries=places"></script> --}}
 
     <!-- CSRF Token -->
@@ -18,7 +20,6 @@
     <title>{{ config('app.name', 'Football Online') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/matches.js') }}" defer></script>
     <script src="{{ asset('js/league.js') }}" defer></script>
 
     <!-- Styles -->
@@ -33,12 +34,13 @@
     <link href="{{ asset('css/player_info.css') }}" rel="stylesheet">
     <link href="{{ asset('css/table_standings.css') }}" rel="stylesheet">
     <link href="{{ asset('css/map.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/administration_page.css') }}" rel="stylesheet">
 
 </head>
 
 <body>
 
-    <div id="app">  {{-- OVO NEKA OSTANE ZBOG VUE.JS --}}
+    <div id="app"> 
        
         @include('partials.header')
 
