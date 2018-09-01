@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94f11243783d9d0a2a1c1c52aef59a8e",
+    "content-hash": "83dae2cff639d62bf07540810c9484f1",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -407,6 +407,54 @@
                 "football-data"
             ],
             "time": "2018-08-05T01:37:43+00:00"
+        },
+        {
+            "name": "guidocella/eloquent-insert-on-duplicate-key",
+            "version": "v2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guidocella/eloquent-insert-on-duplicate-key.git",
+                "reference": "8eebaec060b44fb6efbd9539af24040a384f59e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guidocella/eloquent-insert-on-duplicate-key/zipball/8eebaec060b44fb6efbd9539af24040a384f59e6",
+                "reference": "8eebaec060b44fb6efbd9539af24040a384f59e6",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.4.*|5.5.*|5.6.*",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "laravel/laravel": "5.6.*",
+                "phpunit/phpunit": "^7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "InsertOnDuplicateKey\\InsertOnDuplicateKeyServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "InsertOnDuplicateKey\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Macros for INSERT ON DUPLICATE KEY UPDATE and INSERT IGNORE with Eloquent",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "mysql"
+            ],
+            "time": "2018-02-17T12:02:06+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

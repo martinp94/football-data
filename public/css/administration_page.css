@@ -37,6 +37,6 @@
 	
 	display: grid;
 	grid-template-columns: 15% 85%;
-	grid-gap: 1em;
+	grid-gap: 2em;
 	padding: 1em;
 }

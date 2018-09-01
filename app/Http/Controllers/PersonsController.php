@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PersonUpdateRequest;
 use App\Person;
 
 class PersonsController extends Controller
@@ -58,7 +59,9 @@ class PersonsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $person = Person::find($id);
+
+        return view('administration.teams.team-player')->with('person', $person);
     }
 
     /**
@@ -68,9 +71,30 @@ class PersonsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PersonUpdateRequest $request, $id)
     {
-        //
+
+        $data = array_filter($request->all(), function($el, $key) {
+            return $el != null && $key != '_token' && $key != '_method' && $key != 'image';
+        }, ARRAY_FILTER_USE_BOTH);
+
+        $imageFile = $request->file('image');
+        $imageFilename = null;
+
+        $person = Person::find($id);
+
+        if($imageFile)
+        {
+            $extension = $imageFile->getClientOriginalExtension();
+            $imageFilename = $person->uriname . ".{$extension}";
+            $imageFile->move(public_path() . '/images/players/', $imageFilename);
+            $person->image = $imageFilename;
+        }
+
+        $person->update($request->only(array_keys($data)));
+
+
+        return redirect()->route('persons.edit', $id);
     }
 
     /**
@@ -81,6 +105,7 @@ class PersonsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+
     }
 }

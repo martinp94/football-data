@@ -25,28 +25,35 @@ class Fixture {
 
 		fixtureNode.querySelector('.fixture-result').textContent = this.displayScore;
 		fixtureNode.querySelector('.fixture-description').textContent = this.status;
-		if(this.status == 'IN_PLAY')
+		if(this.status == 'IN_PLAY') {
 			fixtureNode.querySelector('.minute').textContent = "0'";
+			fixtureNode.classList.add('live');
+		}
+
+		if(this.status == 'PAUSED') {
+			fixtureNode.querySelector('.minute').textContent = "Pauza";
+			fixtureNode.classList.add('live');
+		}
 	}
 
 	updateFixtureData() {
+		console.log(this.id);
 		fetch(`http://api.football-data.org/v2/matches/${this.id}`, {
 			headers: {
 		        "X-Auth-Token": "e2f12665f0e743a0af8f158c513f57bf"
 		    }
 		})
-		.then(function(response) {
-			return response.json();
-		})
-		.then((fixtureJson) => {
+		.then(response => response.json())
+		.then(fixtureJson => {
 			console.log(fixtureJson);
 
-			if(fixtureJson.status == 'IN_PLAY') {
+			if(fixtureJson.status == 'IN_PLAY' || fixtureJson.status == 'PAUSED') {
 				this.status = fixtureJson.status;
 				this.scoreHome = fixtureJson.score.fullTime.homeTeam;
 				this.scoreAway = fixtureJson.score.fullTime.awayTeam;
 				this.displayScore = `${this.scoreHome} : ${this.scoreAway}`;
 			}
+
 
 			this.updateDOM();
 		});

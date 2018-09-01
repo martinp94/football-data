@@ -102,6 +102,7 @@ class FixturesController extends Controller
         //
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -111,6 +112,141 @@ class FixturesController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeBySeason(Request $request, $season_id)
+    {
+        
+        $seasonData = DB::table('competitions')
+            ->join('seasons', 'competitions.id', '=', 'seasons.competition')
+            ->where('seasons.id', '=', $season_id)
+            ->select('competitions.id as competition_id', 'seasons.startDate', 'seasons.endDate')
+            ->first();
+
+        $fixtures = \Football::allMatches($seasonData->competition_id, [
+            'dateFrom' => $seasonData->startDate,
+            'dateTo' => $seasonData->endDate
+        ])->matches;
+
+        /*dd($fixtures);*/
+
+        DB::transaction(function() use ($fixtures, $season_id) {
+
+        
+            foreach ($fixtures as $key => $fixture) {
+                
+
+                // za tabelu fixtures
+
+                $id = $fixture->id;
+                $date = \Carbon\Carbon::parse($fixture->utcDate)->format('Y-m-d H:i:s');
+                $status = $fixture->status;
+                $matchDay = $fixture->matchday;
+                $stage = $fixture->stage;
+                $group = $fixture->group;
+                $homeTeam = $fixture->homeTeam->id;
+                $awayTeam = $fixture->awayTeam->id;
+
+
+
+
+                try {
+
+                    Fixture::create([
+
+                        'id' => $id,
+                        'season_id' => $season_id,
+                        'date' => $date,
+                        'status' => $status,
+                        'stage' => $stage,
+                        'fixture_group' => $group,
+                        'matchday' => $matchDay,
+                        'homeTeam' => $homeTeam,
+                        'awayTeam' => $awayTeam 
+
+                    ]);
+
+                } catch (\Illuminate\Database\QueryException $e) {
+
+                    DB::rollback();
+
+                    if($e->getCode() == 23000) 
+                    {
+                        \Session::flash('errorMsg', "Greška: Preuzimanje utakmica nije uspjelo jer nedostaju timovi za državu ovog takmičenja. " . $e->getMessage());
+                        \Session::forget('successMsg');
+                        return redirect()->route('administration.competitions');
+                    }
+                    
+
+                } catch (PDOException $e) {
+                    
+                }   
+
+               
+
+                // za tabelu fixture_details
+
+                $winner = $fixture->score->winner;
+
+                $duration = $fixture->score->duration;
+
+                $homeTeamFT = $fixture->score->fullTime->homeTeam;
+                $awayTeamFT = $fixture->score->fullTime->awayTeam;
+
+                $homeTeamHT = $fixture->score->halfTime->homeTeam;
+                $awayTeamHT = $fixture->score->halfTime->awayTeam;
+
+                $homeTeamET = $fixture->score->extraTime->homeTeam;
+                $awayTeamET = $fixture->score->extraTime->awayTeam;
+
+                $homeTeamPTS = $fixture->score->penalties->homeTeam;
+                $awayTeamPTS = $fixture->score->penalties->awayTeam;
+
+                try {
+
+                    FixtureDetails::create([
+                        'winner' => $winner,
+                        'duration' => $duration, 
+                        'fixture_id' => $id, 
+                        'homeTeamFT' => $homeTeamFT, 
+                        'awayTeamFT' => $awayTeamFT, 
+                        'homeTeamHT' => $homeTeamHT, 
+                        'awayTeamHT' => $awayTeamHT, 
+                        'homeTeamET' => $homeTeamET, 
+                        'awayTeamET' => $awayTeamET, 
+                        'homeTeamPTS' => $homeTeamPTS, 
+                        'awayTeamPTS' => $awayTeamPTS
+                    ]);
+
+                } catch (\Illuminate\Database\QueryException $e) {
+
+                    if($e->getCode() == 23000) 
+                    {
+                        \Session::flash('errorMsg', "Greška: Preuzimanje detalja utakmice nije uspjelo.");
+                        \Session::forget('successMsg');
+                        return redirect()->route('administration.competitions');
+                    }
+                    
+
+                } catch (PDOException $e) {
+                    
+                }   
+
+
+            }
+
+            \Session::flash('successMsg', "Dodavanje utakmica je uspješno.");
+        });
+
+        
+                    return redirect()->route('administration.competitions');
+
     }
 
     /**

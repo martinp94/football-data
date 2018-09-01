@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
+
+	protected $fillable = ['id', 'name', 'area', 'shortname', 'tla', 'address', 'phone', 'website', 'email', 'founded', 'club_colors', 'venue', 'image', 'created_at', 'updated_at'];
     
 	public function country()
 	{

@@ -20,7 +20,7 @@
 				$seasonYears = $seasonStartYear . '/' . $seasonEndYear;
 			@endphp
 
-			<li><a href="{{ route('league.season', ['season' => $season->startDate, 'shortName' => $competition->shortName]) }}"> Sezona {{ $seasonYears }} </a></li>
+			<li><a href="{{ route('competitions.season', ['season' => $season->startDate, 'shortName' => $competition->shortName]) }}"> Sezona {{ $seasonYears }} </a></li>
 		@endforeach
 	</ul>
 </div>

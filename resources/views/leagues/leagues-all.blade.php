@@ -14,7 +14,7 @@
 				</div>
 
 				<div class="league-name">
-					<a href="{{ route('league', $league->shortName) }}"> {{ $league->name }}  </a>
+					<a href="{{ route('competition', $league->shortName) }}"> {{ $league->name }}  </a>
 				</div>
 
 				<div class="league-logo">

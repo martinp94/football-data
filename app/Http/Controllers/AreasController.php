@@ -43,7 +43,6 @@ class AreasController extends Controller
         $data = $request->all();
 
         $imageFile = $request->file('country_flag');
-        $extension = $imageFile->getClientOriginalExtension();
         $imageFilename = $request->input('country_code') . '.png';
         $imageFile->move(public_path() . '/images/countries/', $imageFilename);
 

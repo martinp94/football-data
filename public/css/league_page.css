@@ -11,6 +11,11 @@
 	margin-bottom: 1em;
 }
 
+.league-page > .league-page-navigation > a {
+	text-decoration: none;
+	color: #000;
+}
+
 .league-page > .league-page-navigation > a > div {
 	background: #eee;
 	padding: 1em;

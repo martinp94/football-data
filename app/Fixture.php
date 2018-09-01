@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Fixture extends Model
 {
     protected $table = 'fixtures';
+    protected $fillable = ['id', 'season_id', 'date', 'status', 'stage', 'fixture_group', 'matchday', 'homeTeam', 'awayTeam'];
 
     public function teamHome()
     {

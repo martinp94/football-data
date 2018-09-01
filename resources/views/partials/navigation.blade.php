@@ -20,7 +20,7 @@
           Takmičenja
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ route('leagues.all') }}">Lige</a>
+          <a class="dropdown-item" href="{{ route('competitions.all') }}">Lige</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Liga šampiona</a>
           <a class="dropdown-item" href="#">Liga Evrope</a>

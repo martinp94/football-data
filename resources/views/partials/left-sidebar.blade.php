@@ -10,11 +10,11 @@
 
 			@foreach ($countries as $country)
 				<li> 
-					<a href="{{ route('league.country', ['country' => $country['countryCode']]) }}"> 
+					<a href="{{ route('competitions.country', ['country' => $country['countryCode']]) }}"> 
 						{{ $country['name'] }} 
 					</a> 
 
-					<img width="32" src="{{ asset('images/countries/' . $country['image']) }}" alt="Not Found" onerror=this.src="{{ asset('images/countries/' . 'unknown.png') }}">
+					<img width="32" src="{{ asset('images/countries/' . $country['image']) }}" alt="" onerror=this.src="{{ asset('images/countries/' . 'unknown.png') }}>
 				</li>
 			@endforeach
 

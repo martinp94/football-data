@@ -28,7 +28,7 @@
 				</div>
 
 				<div class="clubs-list-club-image">
-					<img width="32" src="{{ asset('images/club_logos') . '/' . $team->image }}" >
+					<img width="32" src="{{ asset('images/club_logos') . '/' . $team->image }}" alt="">
 				</div>
 
 				<div class="clubs-list-club-shortname">
@@ -36,7 +36,7 @@
 				</div>
 
 				<div class="clubs-list-club-country">
-					<img width="32" src="{{ asset('images/countries') . '/' . $team->country->image}} ">
+					<img width="32" src="{{ asset('images/countries') . '/' . $team->country->image}} " alt="">
 					
 				</div>
 

@@ -18,9 +18,10 @@ class AdminController extends Controller
     	return view('administration.administration');
     }
 
-
-
-
+    public function searchTeams()
+    {
+        return view('administration.teams.teams-search');
+    }
 
     public function fixtures()
     {
@@ -36,9 +37,6 @@ class AdminController extends Controller
     {
     	return view('administration.teams.adm-teams');
     }
-
-
-
 
     public function areas()
     {

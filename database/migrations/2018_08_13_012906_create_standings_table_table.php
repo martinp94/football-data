@@ -18,7 +18,7 @@ class CreateStandingsTableTable extends Migration
             $table->integer('standing_id')->unsigned();
             $table->integer('team_id')->unsigned();
             $table->integer('position')->nullable();
-            $table->integer('playerGames')->nullable();
+            $table->integer('playedGames')->nullable();
             $table->integer('won')->nullable();
             $table->integer('draw')->nullable();
             $table->integer('lost')->nullable();
@@ -29,7 +29,7 @@ class CreateStandingsTableTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('standing_id')->references('id')->on('standings');
+            $table->foreign('standing_id')->references('id')->on('standings')->onDelete('cascade');
             $table->foreign('team_id')->references('id')->on('teams');
         });
     }

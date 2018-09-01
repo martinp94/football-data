@@ -8,6 +8,7 @@ class Competition extends Model
 {
     
     protected $table = 'competitions';
+    protected $fillable = ['id', 'name', 'shortName', 'area', 'plan'];
 
     public function country()
 	{
