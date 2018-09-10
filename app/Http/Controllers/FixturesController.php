@@ -281,7 +281,7 @@ class FixturesController extends Controller
     public function update(Request $request, $id)
     {
 
-        $matchDataNew = \Football::findMatch($id);
+        $matchDataNew = \Football::findMatch($id)->match;
 
         // update za fixtures tabelu
         $status = $matchDataNew->status;
